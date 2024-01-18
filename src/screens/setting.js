@@ -12,9 +12,13 @@ const SettingScreen = ({navigation, route}) => {
       <Option
         isOnPress={() => {
           navigation.navigate('AccountAndSercurity', {
-            name: 'Ngoc',
-            phoneNumber: '0326492423',
-            imageUrl: null,
+            userInfor: {
+              name: 'Ngoc',
+              phoneNumber: '0326492423',
+              imageUrl: null,
+              sex: true,
+              date:'21/03/2002'
+            },
           });
         }}
         icon={<Shield color={colors.header} />}
