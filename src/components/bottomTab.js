@@ -13,14 +13,17 @@ const BottomTabs = () => {
       <Tab.Screen name='Tin nhắn' component={MessageScreen} options={{
           tabBarIcon: ({ focused }) => (
             <Message color={focused ? colors.header : "#000"} />
-          ),
-          tabBarShowLabel: false,
+            
+            ),
+            tabBarShowLabel: false,
         }} />
         <Tab.Screen name='Danh bạ' component={PhoneBookScreen} options={{
+          
           tabBarIcon: ({ focused }) => (
             <UserTag color={focused ? colors.header : "#000"} />
           ),
           tabBarShowLabel: false,
+          
         }} />
         <Tab.Screen name='Cá nhân' component={AccountScreen} options={{
           tabBarIcon: ({ focused }) => (

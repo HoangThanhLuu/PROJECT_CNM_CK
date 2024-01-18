@@ -9,6 +9,10 @@ const font = StyleSheet.create({
     sencond:{
         fontSize:16,
         color:'#000000'
+    },
+    titleMedium:{
+        fontSize:13,
+        color:'#000000'
     }
 })
 export default font;

@@ -9,9 +9,11 @@ const styles = StyleSheet.create({
         paddingHorizontal:20,
         height:50,
         backgroundColor: colors.primary,
+        marginTop:5
     },
     box:{
-        flexDirection:'row'
+        flexDirection:'row',
+        alignItems:'center'
     }
 })
 export default styles;
