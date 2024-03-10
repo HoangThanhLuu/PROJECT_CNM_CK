@@ -19,7 +19,11 @@ const App = () => {
         // eslint-disable-next-line prettier/prettier
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="User_UI" component={User_UI} />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: true }}
+        />
         <Stack.Screen name="BottomTab" component={BottomTabs} />
         <Stack.Screen name="Setting" component={SettingScreen} />
         <Stack.Screen
