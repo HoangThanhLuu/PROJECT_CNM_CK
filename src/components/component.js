@@ -1,6 +1,6 @@
 // eslint-disable-next-line prettier/prettier
 import { View, Text } from 'react-native';
-import React from 'react';
+import React from "react";
 
 const ComponentDemo = () => {
   return (

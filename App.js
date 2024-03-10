@@ -8,14 +8,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AccountAndSercurityScreen from "./src/screens/account_and_sercurity";
 import BottomTabs from "./src/components/bottomTab";
+import Login from "./src/screens/Login";
+import User_UI from "./src/components/User_UI";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="BottomTab"
+        initialRouteName="User_UI"
         // eslint-disable-next-line prettier/prettier
         screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="User_UI" component={User_UI} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="BottomTab" component={BottomTabs} />
         <Stack.Screen name="Setting" component={SettingScreen} />
         <Stack.Screen
