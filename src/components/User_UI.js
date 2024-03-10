@@ -11,7 +11,7 @@ const User_UI = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Login')} style={{ width: 140, height: 60, borderRadius: 20, marginTop: 50, justifyContent: 'center', alignItems: "center", backgroundColor: "#093DF4" }}>
                     <Text style={{ fontWeight: '700', fontSize: 18, color: 'white' }}>Đăng nhập</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ width: 140, height: 60, borderRadius: 20, marginTop: 20, justifyContent: 'center', alignItems: "center", backgroundColor: "#D9D9D9" }}>
+                <TouchableOpacity onPress={() => navigation.navigate('ResgisterAccount')} style={{ width: 140, height: 60, borderRadius: 20, marginTop: 20, justifyContent: 'center', alignItems: "center", backgroundColor: "#D9D9D9" }}>
                     <Text style={{ fontWeight: '700', fontSize: 18, color: 'black' }}>Đăng kí</Text>
                 </TouchableOpacity>
 

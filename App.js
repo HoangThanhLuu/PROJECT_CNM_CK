@@ -10,6 +10,7 @@ import AccountAndSercurityScreen from "./src/screens/account_and_sercurity";
 import BottomTabs from "./src/components/bottomTab";
 import Login from "./src/screens/Login";
 import User_UI from "./src/components/User_UI";
+import ResgisterAccount from "./src/screens/ResgisterAccount";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -24,6 +25,12 @@ const App = () => {
           component={Login}
           options={{ headerShown: true }}
         />
+        <Stack.Screen
+          name="ResgisterAccount"
+          component={ResgisterAccount}
+          options={{ headerShown: true }}
+        />
+
         <Stack.Screen name="BottomTab" component={BottomTabs} />
         <Stack.Screen name="Setting" component={SettingScreen} />
         <Stack.Screen

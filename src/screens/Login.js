@@ -43,7 +43,7 @@ const LoginScreen = () => {
                         secureTextEntry
                     /></View>
                 <View style={{ width: '90%', marginBottom: 30 }}>
-                    <Text style={{ fontSize: 15, color: '#37A6F4' }}>Lấy lại mật khẩu ?</Text>
+                    <Text style={{ fontSize: 15, color: '#37A6F4' }}>Lấy lại mật khẩu ?    </Text>
                 </View>
 
                 <Button title="Đăng nhập" onPress={handleLogin} />
