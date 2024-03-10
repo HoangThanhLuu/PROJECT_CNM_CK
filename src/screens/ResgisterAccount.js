@@ -28,9 +28,8 @@ const ResgisterAccount = ({ navigation }) => {
             const response = await axios.post('http://your-backend-url/api/register', {
                 name: name
             });
-            // Xử lý kết quả trả về từ máy chủ (nếu cần)
             // Chuyển đến màn hình tiếp theo
-            navigation.navigate('RegisterPhoneNumber');
+            //  navigation.navigate('ResgisterPhone');
         } catch (error) {
             console.error('Đã xảy ra lỗi:', error);
         }
@@ -49,12 +48,14 @@ const ResgisterAccount = ({ navigation }) => {
                         value={name}
                     />
                 </View>
-                <Button title="Tiếp theo" onPress={handleNext} />
-
-                <View style={{ backgroundColor: '#37A6F4', position: 'absolute', bottom: 7, right: 3, width: 50, height: 50, borderRadius: 100, justifyContent: 'center', alignItems: 'center' }}>
+                <Button title="Tiếp theo" onPress={() => {
+                    navigation.navigate('ResgisterPhone');//test tạm thời
+                    handleNext();
+                }} />
+                {/* <View  style={{ backgroundColor: '#37A6F4', position: 'absolute', bottom: 7, right: 3, width: 50, height: 50, borderRadius: 100, justifyContent: 'center', alignItems: 'center' }}>
                     <ArrowRight size="35" color="#2ccce4" style={{}} />
 
-                </View>
+                </View> */}
 
             </View>
 
