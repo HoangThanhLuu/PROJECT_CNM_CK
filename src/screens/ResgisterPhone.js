@@ -41,7 +41,7 @@ const ResgisterPhone = ({ navigation }) => {
         <View style={{ width: '100%', height: '100%', alignItems: 'center' }}>
             <View style={{ width: '80%', height: '100%', alignItems: 'center', flexDirection: "column st" }}>
                 <View style={{ width: '100%', marginVertical: 20 }}>
-                    <Text style={{ color: 'black', fontWeight: '700', fontSize: 25 }}>Số điện thoại</Text>
+                    <Text style={{ color: 'black', fontWeight: '700', fontSize: 25 }}>Số điện thoại </Text>
                 </View>
                 <View style={{ width: '100%', borderBottomWidth: 1, marginVertical: 20, flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ marginRight: 7 }}>VN</Text>
