@@ -1,4 +1,5 @@
-import {View, Text, Image} from 'react-native';
+/* eslint-disable prettier/prettier */
+import { View, Text, Image } from 'react-native';
 import React from 'react';
 import Header from '../components/header';
 import { ArrowRight2 } from 'iconsax-react-native';
