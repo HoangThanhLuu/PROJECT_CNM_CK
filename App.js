@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // eslint-disable-next-line prettier/prettier
 import { View, Text } from 'react-native';
 import React from "react";
@@ -8,10 +9,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AccountAndSercurityScreen from "./src/screens/account_and_sercurity";
 import BottomTabs from "./src/components/bottomTab";
-import Login from "./src/screens/Login";
+import Login from "./src/screens/login/Login";
 import User_UI from "./src/components/User_UI";
-import ResgisterAccount from "./src/screens/ResgisterAccount";
-import ResgisterPhone from "./src/screens/ResgisterPhone";
+import ResgisterAccount from "./src/screens/resgister/ResgisterAccount";
+import ResgisterOPT from "./src/screens/resgister/ResgisterOPT";
+// eslint-disable-next-line quotes
+import ForgetPassword from "./src/screens/forgetPassword/ForgetPassword"
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -32,11 +35,12 @@ const App = () => {
           component={ResgisterAccount}
           options={{ headerShown: true }}
         />
-        <Stack.Screen
+        <Stack.Screen name='ForgetPassword' component={ForgetPassword} options={{ headerShown: true }} />
+        {/* <Stack.Screen
           name="ResgisterPhone"
           component={ResgisterPhone}
           options={{ headerShown: true }}
-        />
+        /> */}
 
         <Stack.Screen name="BottomTab" component={BottomTabs} />
         <Stack.Screen name="Setting" component={SettingScreen} />
@@ -44,6 +48,7 @@ const App = () => {
           name="AccountAndSercurity"
           component={AccountAndSercurityScreen}
         />
+        <Stack.Screen name="ResgisterOPT" component={ResgisterOPT} />
       </Stack.Navigator>
     </NavigationContainer>
   );
