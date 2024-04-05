@@ -6,10 +6,10 @@ import { View, TextInput, Button, Alert } from "react-native";
 import axios from "axios";
 
 const ForgetPassword = ({ navigation }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState('');
-
+    const [email, setEmail] = useState("luuhoang06102002@gmail.com");
+    const [password, setPassword] = useState("1234567@Luu");
+    const [confirmPassword, setConfirmPassword] = useState('1234567@Luu');
+    console.log(email);
     const handleResetPassword = async () => {
         try {
             // Kiểm tra mật khẩu và mật khẩu xác nhận có khớp nhau hay không
@@ -19,16 +19,17 @@ const ForgetPassword = ({ navigation }) => {
             }
 
             // Gửi yêu cầu đặt lại mật khẩu mới đến máy chủ
-            const response = await axios.post('http://172.20.10.6:8000/auth/resetPassword', {
-                email,
-                newPassword: password
+            const response = await axios.put('http://172.20.10.6:8000/auth/resetPassword', {
+                email: email, // Sử dụng đối tượng params để truyền email
+                password: password, // Truyền mật khẩu mới vào password
+                confirmPassword: confirmPassword
             });
-
+            console.log(response);
             // Xử lý phản hồi từ máy chủ
-            if (response.data.success) {
+            if (response.data.message === "Reset password success") { // Sử dụng message từ phản hồi để kiểm tra thành công
                 Alert.alert("Success", "Đặt lại mật khẩu thành công!");
                 // Chuyển hướng người dùng đến màn hình đăng nhập sau khi đặt lại mật khẩu thành công
-                navigation.navigate('Login');
+                navigation.navigate('ResgisterOPT', { email });
             } else {
                 Alert.alert("Error", "Đặt lại mật khẩu không thành công. Vui lòng thử lại sau.");
             }

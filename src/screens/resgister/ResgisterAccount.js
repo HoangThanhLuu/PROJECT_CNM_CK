@@ -6,11 +6,11 @@ import { Sun } from "iconsax-react-native";
 
 const RegisterAccount = ({ navigation }) => {
     const [stick, setStick] = useState(false);
-    const [email, setEmail] = useState("luuhoang06102002@gmail.com");
-    const [phone, setPhone] = useState("0966345012");
-    const [password, setPassword] = useState("0966345012@Luu");
-    const [name, setName] = useState("Thanh Luu");
-    const [confirmPassword, setConfirmPassword] = useState("0966345012@Luu");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async () => {
         // Kiểm tra các trường thông tin có được nhập đầy đủ không

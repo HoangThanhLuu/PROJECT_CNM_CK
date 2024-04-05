@@ -6,8 +6,8 @@ import axios from 'axios';
 
 
 const LoginScreen = ({ navigation }) => {
-    const [phone, setPhone] = useState('0384492920');
-    const [password, setPassword] = useState('0384492920Thuy@');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
         checkToken(); // Kiểm tra token khi màn hình được tải
@@ -71,7 +71,7 @@ const LoginScreen = ({ navigation }) => {
                         <View style={{ width: '100%', height: 50, borderWidth: 1, marginVertical: 20, justifyContent: 'center' }}>
                             <TextInput
 
-
+                                secureTextEntry
                                 onChangeText={text => setPassword(text)}
                                 value={password}
                             />
