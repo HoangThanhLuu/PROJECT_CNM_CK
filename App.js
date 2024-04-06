@@ -13,8 +13,11 @@ import Login from "./src/screens/login/Login";
 import User_UI from "./src/components/User_UI";
 import ResgisterAccount from "./src/screens/resgister/ResgisterAccount";
 import ResgisterOPT from "./src/screens/resgister/ResgisterOPT";
+import Addchat from "./src/screens/conversation/AddChat";
+
 // eslint-disable-next-line quotes
 import ForgetPassword from "./src/screens/forgetPassword/ForgetPassword"
+import AddChat from './src/screens/conversation/AddChat';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -49,6 +52,8 @@ const App = () => {
           component={AccountAndSercurityScreen}
         />
         <Stack.Screen name="ResgisterOPT" component={ResgisterOPT} />
+        <Stack.Screen name="AddChat" component={AddChat} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

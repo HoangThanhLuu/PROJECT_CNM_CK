@@ -6,9 +6,10 @@ import axios from 'axios';
 
 
 const LoginScreen = ({ navigation }) => {
-    const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
-
+    const [phone, setPhone] = useState('0966345012');
+    const [password, setPassword] = useState('0966345012@Luu');
+    const [token1, setToken1] = useState();
+    console.log(token1);
     useEffect(() => {
         checkToken(); // Kiểm tra token khi màn hình được tải
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -16,6 +17,8 @@ const LoginScreen = ({ navigation }) => {
 
     const checkToken = async () => {
         const token = await AsyncStorage.getItem('token');
+
+        console.log(token);
         // if (token) {
         //     // Nếu token đã tồn tại, điều hướng đến màn hình khác
         //     navigation.navigate('BottomTab');
@@ -29,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
                 password: password,
             });
             const { token } = response.data;
-
+            setToken1(token);
             // Lưu token vào AsyncStorage
             await AsyncStorage.setItem('token', token);
 
@@ -37,7 +40,10 @@ const LoginScreen = ({ navigation }) => {
             Alert.alert('Success', 'Đăng nhập thành công!');
 
             // Điều hướng đến màn hình khác sau khi đăng nhập thành công
-            navigation.navigate('BottomTab');
+            navigation.navigate('BottomTab', {
+                khoa: token1,
+                onNavigateBack: (token) => setToken1(token)
+            });
         } catch (error) {
             // Xử lý lỗi khi đăng nhập không thành công
             console.error('Error:', error);
