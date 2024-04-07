@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
     const checkToken = async () => {
         const token = await AsyncStorage.getItem('token');
 
-        console.log(token);
+
         // if (token) {
         //     // Nếu token đã tồn tại, điều hướng đến màn hình khác
         //     navigation.navigate('BottomTab');
@@ -27,11 +27,12 @@ const LoginScreen = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://172.20.10.6:8000/auth/login', {
+            const response = await axios.post('http://192.168.1.11:8000/auth/login', {
                 phoneNumber: phone,
                 password: password,
             });
             const { token } = response.data;
+            console.log(token1);
             setToken1(token);
             // Lưu token vào AsyncStorage
             await AsyncStorage.setItem('token', token);

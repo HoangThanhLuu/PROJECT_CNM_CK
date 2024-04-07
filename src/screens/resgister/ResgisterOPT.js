@@ -10,7 +10,7 @@ const RegisterOTP = ({ route, navigation }) => {
     const handleVerifyOTP = async () => {
         const { email } = route.params;
         try {
-            const response = await axios.post(`http://172.20.10.6:8000/auth/verify`, { otp, email });
+            const response = await axios.post(`http://192.168.1.11:8000/auth/verify`, { otp, email });
             console.log(response);
             Alert.alert('Success', 'OTP đăng kí thành công.');
             navigation.navigate('Login'); // Chuyển đến màn hình đăng nhập sau khi OTP được xác thực thành công

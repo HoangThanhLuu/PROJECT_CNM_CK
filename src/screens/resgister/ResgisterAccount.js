@@ -27,7 +27,7 @@ const RegisterAccount = ({ navigation }) => {
 
         try {
             // Gửi request đăng ký tài khoản lên server
-            const response = await axios.post("http://172.20.10.6:8000/auth/signup", {
+            const response = await axios.post("http://192.168.1.11:8000/auth/signup", {
                 email: email,
                 phoneNumber: phone,
                 password: password,

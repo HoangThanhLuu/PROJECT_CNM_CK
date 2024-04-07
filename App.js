@@ -14,6 +14,8 @@ import User_UI from "./src/components/User_UI";
 import ResgisterAccount from "./src/screens/resgister/ResgisterAccount";
 import ResgisterOPT from "./src/screens/resgister/ResgisterOPT";
 import Addchat from "./src/screens/conversation/AddChat";
+import ChatScreen from "./src/screens/conversation/ChatScreen";
+
 
 // eslint-disable-next-line quotes
 import ForgetPassword from "./src/screens/forgetPassword/ForgetPassword"
@@ -53,6 +55,8 @@ const App = () => {
         />
         <Stack.Screen name="ResgisterOPT" component={ResgisterOPT} />
         <Stack.Screen name="AddChat" component={AddChat} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+
 
       </Stack.Navigator>
     </NavigationContainer>

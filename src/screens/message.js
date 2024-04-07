@@ -15,7 +15,8 @@ const MessageScreen = ({ navigation }) => {
   const fetchConversations = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const response = await axios.get('http://172.20.10.6:8000/conversation', {
+      console.log(token);
+      const response = await axios.get('http://192.168.1.11:8000/conversation', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -39,7 +40,7 @@ const MessageScreen = ({ navigation }) => {
   };
 
   const handleAddChat = () => {
-    navigation.navigate('AddChat');
+    navigation.navigate('AddChat', { conversations });
   };
 
   const renderConversationItem = ({ item }) => (
@@ -53,8 +54,8 @@ const MessageScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  const navigateToChat = (conversation) => {
-    navigation.navigate('Chat', { conversation });
+  const navigateToChat = (conversations) => {
+    navigation.navigate('ChatScreen', { conversations });
   };
 
   return (
