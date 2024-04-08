@@ -14,7 +14,7 @@ const AddFriendByPhoneScreen = ({ route }) => {
     const handleSearchFriend = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
-            const response = await axios.get(`http://192.168.1.11:8000/friend/find/${phoneNumber}`, {
+            const response = await axios.get(`http://192.168.1.10:8000/friend/find/${phoneNumber}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -43,7 +43,7 @@ const AddFriendByPhoneScreen = ({ route }) => {
 
             const token = await AsyncStorage.getItem('token');
             const response = await axios.post(
-                `http://192.168.1.11:8000/friend/add/${friend._id}`,
+                `http://192.168.1.10:8000/friend/add/${friend._id}`,
                 { content: content },
                 {
                     headers: {

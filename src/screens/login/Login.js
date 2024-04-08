@@ -6,8 +6,8 @@ import axios from 'axios';
 
 
 const LoginScreen = ({ navigation }) => {
-    const [phone, setPhone] = useState('0966345012');
-    const [password, setPassword] = useState('0966345012@Luu');
+    const [phone, setPhone] = useState('0362285724');
+    const [password, setPassword] = useState('01636878201Aa@');
     const [token1, setToken1] = useState();
     console.log(token1);
     useEffect(() => {
@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://192.168.1.11:8000/auth/login', {
+            const response = await axios.post('http://192.168.1.10:8000/auth/login', {
                 phoneNumber: phone,
                 password: password,
             });

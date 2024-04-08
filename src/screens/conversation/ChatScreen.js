@@ -1,83 +1,4 @@
 /* eslint-disable prettier/prettier */
-// /* eslint-disable prettier/prettier */
-// import React, { useState, useEffect } from 'react';
-// import { View, Text, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import axios from 'axios';
-
-// const ChatScreen = ({ route }) => {
-//     const { conversations } = route.params;
-//     console.log(conversations);
-//     const [messages, setMessages] = useState([]);
-//     const [messageInput, setMessageInput] = useState('');
-
-//     useEffect(() => {
-//         // fetchMessages();
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//     }, []);
-
-//     const fetchMessages = async () => {
-//         try {
-//             const token = await AsyncStorage.getItem('token');
-//             const response = await axios.get(`http://172.20.10.6:8000/messages/text/${conversations._id}`, {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`
-//                 }
-//             });
-//             setMessages(response.data.messages);
-//         } catch (error) {
-//             console.error('Error fetching messages:', error);
-//             Alert.alert('Error', 'Đã xảy ra lỗi khi tải tin nhắn. Vui lòng thử lại sau.');
-//         }
-//     };
-
-//     const sendMessage = async () => {
-//         try {
-//             const token = await AsyncStorage.getItem('token');
-//             const response = await axios.post(`http://172.20.10.6:8000/messages/text/${conversations._id}`, {
-//                 content: messageInput
-//             }, {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`
-//                 }
-//             });
-//             setMessages([...messages, response.data.message]);
-//             setMessageInput('');
-//         } catch (error) {
-//             console.error('Error sending message:', error);
-//             Alert.alert('Error', 'Đã xảy ra lỗi khi gửi tin nhắn. Vui lòng thử lại sau.');
-//         }
-//     };
-
-//     const renderMessageItem = ({ item }) => (
-//         <View style={{ padding: 10 }}>
-//             <Text>{item.senderName}: {item.content}</Text>
-//         </View>
-//     );
-
-//     return (
-//         <View style={{ flex: 1 }}>
-//             <FlatList
-//                 data={messages}
-//                 renderItem={renderMessageItem}
-//                 keyExtractor={(item) => item._id}
-//                 ListEmptyComponent={<Text style={{ textAlign: 'center', marginTop: 20 }}>Không có tin nhắn nào.</Text>}
-//                 inverted // To show the latest messages at the bottom
-//             />
-//             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, borderTopWidth: 1, borderTopColor: '#ccc' }}>
-//                 <TextInput
-//                     value={messageInput}
-//                     onChangeText={setMessageInput}
-//                     placeholder="Nhập tin nhắn..."
-//                     style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, padding: 8 }}
-//                 />
-//                 <TouchableOpacity onPress={sendMessage} style={{ marginLeft: 10 }}>
-//                     <Text style={{ color: '#27B1D5', fontWeight: 'bold' }}>Gửi</Text>
-//                 </TouchableOpacity>
-//             </View>
-//         </View>
-//     );
-// };
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -87,31 +8,40 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const ChatScreen = ({ route }) => {
     const { conversations } = route.params;
-    const [messages, setMessages] = useState({}); // Đối tượng lưu trữ tin nhắn theo ID cuộc trò chuyện
+    const [messages, setMessages] = useState({});
     const [messageInput, setMessageInput] = useState('');
-    const [selectedImage, setSelectedImage] = useState(null); // Thêm state để lưu trữ hình ảnh đã chọn
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [currentUserId, setCurrentUserId] = useState(null); // Thêm state để lưu trữ ID của người dùng hiện tại
 
     useEffect(() => {
-        fetchMessagesFromStorage(); // Tải tin nhắn từ AsyncStorage khi mở màn hình tin nhắn
+        fetchMessagesFromStorage();
+        getCurrentUserId(); // Lấy ID của người dùng hiện tại khi màn hình được load
     }, []);
 
-    // Function to fetch messages from AsyncStorage
+    const getCurrentUserId = async () => {
+        try {
+            const userId = await AsyncStorage.getItem('userId');
+            setCurrentUserId(userId);
+        } catch (error) {
+            console.error('Error fetching user ID:', error);
+        }
+    };
+
     const fetchMessagesFromStorage = async () => {
         try {
             const storedMessages = await AsyncStorage.getItem('messages');
             if (storedMessages !== null) {
-                setMessages(JSON.parse(storedMessages)); // Cập nhật tin nhắn từ AsyncStorage
+                setMessages(JSON.parse(storedMessages));
             }
         } catch (error) {
             console.error('Error fetching messages from AsyncStorage:', error);
         }
     };
 
-    // Function to send a message
     const sendMessage = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
-            const response = await axios.post(`http://192.168.1.11:8000/message/text/${conversations._id}`, {
+            const response = await axios.post(`http://192.168.1.10:8000/message/text/${conversations._id}`, {
                 content: messageInput
             }, {
                 headers: {
@@ -124,7 +54,10 @@ const ChatScreen = ({ route }) => {
             if (!updatedMessages[conversationId]) {
                 updatedMessages[conversationId] = [];
             }
-            updatedMessages[conversationId].unshift(response.data.message);
+
+            // Thêm thông tin về người gửi vào tin nhắn
+            const newMessage = { ...response.data.message, sender: currentUserId };
+            updatedMessages[conversationId].unshift(newMessage);
 
             setMessages(updatedMessages);
             setMessageInput('');
@@ -136,7 +69,6 @@ const ChatScreen = ({ route }) => {
         }
     };
 
-    // Function to select an image from device
     const selectImage = async () => {
         try {
             const image = await ImagePicker.openPicker({
@@ -150,7 +82,7 @@ const ChatScreen = ({ route }) => {
             console.log('Error selecting image:', error);
         }
     };
-    // Function to send the selected image to server
+
     const sendImage = async () => {
         try {
             const formData = new FormData();
@@ -161,7 +93,7 @@ const ChatScreen = ({ route }) => {
             });
 
             const token = await AsyncStorage.getItem('token');
-            const response = await axios.post(`http://192.168.1.11:8000/message/file/${conversations._id}`, formData, {
+            const response = await axios.post(`http://192.168.1.10:8000/message/file/${conversations._id}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -173,10 +105,13 @@ const ChatScreen = ({ route }) => {
             if (!updatedMessages[conversationId]) {
                 updatedMessages[conversationId] = [];
             }
-            updatedMessages[conversationId].unshift(response.data.message);
+
+            // Thêm thông tin về người gửi vào tin nhắn
+            const newMessage = { ...response.data.message, sender: currentUserId };
+            updatedMessages[conversationId].unshift(newMessage);
 
             setMessages(updatedMessages);
-            setSelectedImage(null); // Reset selected image after sending
+            setSelectedImage(null);
             await AsyncStorage.setItem('messages', JSON.stringify(updatedMessages));
         } catch (error) {
             console.error('Error sending image:', error);
@@ -184,16 +119,24 @@ const ChatScreen = ({ route }) => {
         }
     };
 
-    const renderMessageItem = ({ item }) => (
-        <View style={{ flexDirection: 'column' }}>
-            <Text style={{ fontSize: 20, color: 'green', textAlign: 'right', padding: 10 }}>{item.content}</Text>
-        </View>
-    );
+    const renderMessageItem = ({ item }) => {
+        // Kiểm tra xem tin nhắn được gửi từ bạn hay không
+        const isMe = item.sender === currentUserId;
+
+        // Chọn kiểu hiển thị dựa trên người gửi
+        const messageStyle = isMe ? { fontSize: 20, color: 'green', textAlign: 'right', padding: 10 } : { fontSize: 20, color: 'blue', textAlign: 'left', padding: 10 };
+
+        return (
+            <View style={{ flexDirection: 'column' }}>
+                <Text style={messageStyle}>{item.content}</Text>
+            </View>
+        );
+    };
 
     const currentConversationMessages = messages[conversations._id] || [];
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
             <FlatList
                 data={currentConversationMessages}
                 renderItem={renderMessageItem}
@@ -202,7 +145,7 @@ const ChatScreen = ({ route }) => {
                 inverted
                 contentContainerStyle={{ flexGrow: 1 }}
             />
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, borderTopWidth: 1, borderTopColor: '#ccc', marginBottom: 10 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, borderTopWidth: 1, borderTopColor: '#ccc', marginBottom: 10, backgroundColor: '#fff' }}>
                 <TouchableOpacity onPress={selectImage} style={{ marginRight: 10 }}>
                     <Text style={{ color: '#27B1D5', fontWeight: 'bold' }}>Chọn ảnh</Text>
                 </TouchableOpacity>
@@ -216,14 +159,14 @@ const ChatScreen = ({ route }) => {
                     value={messageInput}
                     onChangeText={setMessageInput}
                     placeholder="Nhập tin nhắn..."
-                    style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, padding: 8 }}
+                    style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, padding: 8, marginRight: 10, backgroundColor: '#fff' }}
                 />
-                <TouchableOpacity onPress={sendMessage} style={{ marginLeft: 10 }}>
+                <TouchableOpacity onPress={sendMessage} style={{ marginRight: 10 }}>
                     <Text style={{ color: '#27B1D5', fontWeight: 'bold' }}>Gửi</Text>
                 </TouchableOpacity>
                 {selectedImage && (
-                    <TouchableOpacity onPress={sendImage} style={{ marginLeft: 10 }}>
-                        <Text style={{ color: '#27B1D5', fontWeight: 'bold' }}>Gửi ảnh</Text>
+                    <TouchableOpacity onPress={sendImage}>
+                        <Text style={{ color: '#27B1D5', fontWeight: 'bold', marginRight: 10 }}>Gửi ảnh</Text>
                     </TouchableOpacity>
                 )}
             </View>
