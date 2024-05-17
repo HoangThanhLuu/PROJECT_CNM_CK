@@ -16,12 +16,12 @@ const StackNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
-        <Stack.Screen name="Signup" component={RegisterScreen} options={{headerShown: false}} />
-        <Stack.Screen name="Home" component={BottomNavigation} options={{headerShown:false}} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Signup" component={RegisterScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={BottomNavigation} options={{ headerShown: false }} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="FindFriend" component={FindFriend} options={{
-          presentation:"modal"
+          presentation: "modal"
         }} />
         <Stack.Screen name="UserInfo" component={UserInfo} />
         <Stack.Screen name="AddFriend" component={AddFriend} />
