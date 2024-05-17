@@ -10,6 +10,8 @@ import ChatScreen from "../screens/ChatScreen";
 import UserInfo from "../screens/UserInfo";
 import FindFriend from "../screens/FindFriend";
 import AddFriend from "../screens/AddFriend";
+import RegisterOPT from "../components/Login/RegisterOTP";
+import RegisterForm from "../components/Login/RegisterForm";
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
@@ -17,7 +19,8 @@ const StackNavigation = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Signup" component={RegisterScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="RegisterForm" component={RegisterForm} options={{ headerShown: false }} />
+        <Stack.Screen name="RegisterOPT" component={RegisterOPT} />
         <Stack.Screen name="Home" component={BottomNavigation} options={{ headerShown: false }} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="FindFriend" component={FindFriend} options={{
