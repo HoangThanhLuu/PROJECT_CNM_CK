@@ -4,10 +4,11 @@ import ConversationReducer from "./conversationSlice";
 import FriendReducer from "./FriendSlice"
 import MessageReducer from './MessageSlice'
 export const store = configureStore({
-    reducer:{
+    reducer: {
         auth: AuthReducer,
         conversations: ConversationReducer,
         friends: FriendReducer,
         messages: MessageReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })

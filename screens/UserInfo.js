@@ -3,13 +3,13 @@ import React from "react";
 import Button from "../components/UI/Button";
 import { useSelector } from "react-redux";
 
-const UserInfo = ({navigation}) => {
+const UserInfo = ({ navigation }) => {
   const userInfo = useSelector((state) => state.friends.friendInfo);
   console.log(userInfo);
 
-    function addFriendHandler(){
-        navigation.navigate("AddFriend")
-    }
+  function addFriendHandler() {
+    navigation.navigate("AddFriend")
+  }
 
   return (
     <View style={styles.container}>

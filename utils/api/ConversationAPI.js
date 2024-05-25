@@ -32,10 +32,39 @@ export async function getConversationByIdAPI(id) {
       console.log(error.response.status);
       console.log(error.response.header);
     });
-    const conversation ={
-      _id: response.data.conversation._id,
-      type: response.data.conversation.type,
-      name: response.data.conversation.chatName ? response.data.conversation.chatName : response.data.nameAndAvatar.name
-    }
+  const conversation = {
+    _id: response.data.conversation._id,
+    type: response.data.conversation.type,
+    name: response.data.conversation.chatName
+      ? response.data.conversation.chatName
+      : response.data.nameAndAvatar.name,
+  };
   return conversation;
+}
+
+export async function createGroupAPI(chatName, image, memberIds) {
+  console.log("memer ids", memberIds);
+  const formData = new FormData();
+  formData.append("image", {
+    uri: image.uri,
+    type: image.mimeType,
+    name: image.fileName,
+  });
+  formData.append("chatName", chatName);
+  for (let index = 0; index < memberIds.length; index++) {
+    formData.append("memberIds", memberIds[index]);
+  }
+  try {
+    const token = await AsyncStorage.getItem("token");
+    const response = await axios.post(PORT + "/conversation/group", formData, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
 }
