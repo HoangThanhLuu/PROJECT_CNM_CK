@@ -1,12 +1,17 @@
 import { Alert, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import {Ionicons} from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from "@react-navigation/native";
-const ModalUI = () => {
-  const [modalVisible, setModalVisible] = useState(true);
+const ModalUI = ({ visible }) => {
+  const [modalVisible, setModalVisible] = useState(visible ? visible : false);
   const navigation = useNavigation()
-  function addFriendHandler(){
+  function addFriendHandler() {
     navigation.navigate("FindFriend")
+    setModalVisible(false);
+  }
+  function createGroupHandler() {
+    navigation.navigate("CreateGroup")
+    setModalVisible(false);
   }
   return (
     <View style={styles.centeredView}>
@@ -23,8 +28,8 @@ const ModalUI = () => {
               <Ionicons name="person-add-outline" size={16} />
               <Text>Thêm bạn bè</Text>
             </Pressable>
-            <Pressable style={styles.button}>
-            <Ionicons name="people-outline" size={16} />
+            <Pressable style={styles.button} onPress={createGroupHandler} >
+              <Ionicons name="people-outline" size={16} />
               <Text>Tạo nhóm</Text>
             </Pressable>
           </View>
@@ -60,8 +65,8 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 10,
-    textAlign:"left",
-    flexDirection:"row",
-    alignItems:"center"
+    textAlign: "left",
+    flexDirection: "row",
+    alignItems: "center"
   },
 });
