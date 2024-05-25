@@ -11,9 +11,15 @@ const LoginScreen = ({ navigation }) => {
         <Text>Sign In Your Account</Text>
       </View>
       <LoginForm />
-      <Pressable onPress={() => navigation.navigate("RegisterForm")}>
-        <Text>Don't have an account</Text>
-      </Pressable>
+      <View style={{ flexDirection: 'row' }}>
+        <Pressable onPress={() => navigation.navigate("RegisterForm")}>
+          <Text>Don't have an account?</Text>
+        </Pressable>
+
+        <Pressable onPress={() => navigation.navigate("ForgetPassword")}>
+          <Text style={{ color: 'blue', marginLeft: 4 }}>Forget Password</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
