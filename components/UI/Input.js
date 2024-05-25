@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 
-const Input = ({title, placeholder, inputConfig}) => {
+const Input = ({ title, placeholder, inputConfig }) => {
   return (
-    <View style={{width:'100%'}}>
+    <View style={{ width: '100%' }}>
       <Text style={styles.text}>{title}</Text>
       <TextInput style={styles.textInput} placeholder={placeholder} {...inputConfig} />
     </View>
@@ -13,12 +13,12 @@ const Input = ({title, placeholder, inputConfig}) => {
 export default Input
 
 const styles = StyleSheet.create({
-    text:{
-        fontSize:16
-    },
-    textInput:{
-        borderBottomWidth:1,
-        borderBottomColor:"black",
-        padding: 6,
-    }
+  text: {
+    fontSize: 16
+  },
+  textInput: {
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    padding: 6,
+  }
 })

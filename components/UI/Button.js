@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#ffffff",
     fontSize: 14,
-    textAlign:"center"
+    textAlign: "center"
   },
   pressed: {
     opacity: 0.7,
