@@ -11,7 +11,7 @@ const RegisterOTP = ({ route, navigation }) => {
     const handleVerifyOTP = async () => {
         const { email } = route.params;
         try {
-            const response = await axios.post(PORT, "/auth/verify", { otp, email });
+            const response = await axios.post(`${PORT}/auth/verify`, { otp, email });
             console.log(response);
             Alert.alert('Success', 'OTP đăng kí thành công.');
             navigation.navigate('Login'); // Chuyển đến màn hình đăng nhập sau khi OTP được xác thực thành công
