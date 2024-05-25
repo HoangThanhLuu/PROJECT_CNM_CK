@@ -23,7 +23,7 @@ export const addFriend = createAsyncThunk("addFriend", async (params) => {
   }
 });
 
-export const getFriendReqs = createAsyncThunk("getFriendReqs", async() =>{
+export const getFriendReqs = createAsyncThunk("getFriendReqs", async () => {
   try {
     const friendReqs = await getListFriendRequest();
     return friendReqs;
@@ -32,14 +32,14 @@ export const getFriendReqs = createAsyncThunk("getFriendReqs", async() =>{
   }
 })
 
-export const accpetAddFriend = createAsyncThunk("accpetAddFriend", async(params) =>{
+export const accpetAddFriend = createAsyncThunk("accpetAddFriend", async (params) => {
   try {
     await accpetAddFriendAPI(params);
   } catch (error) {
     console.log(error);
   }
 })
-export const getFriends = createAsyncThunk("getFriends", async() =>{
+export const getFriends = createAsyncThunk("getFriends", async () => {
   try {
     const friends = await getFriendsAPI();
     return friends;
@@ -50,77 +50,77 @@ export const getFriends = createAsyncThunk("getFriends", async() =>{
 const FriendSlice = createSlice({
   name: "friends",
   initialState: {
-    friends:[],
+    friends: [],
     friendInfo: {},
     friendReqs: [],
-    isLoader: false,
+    isLoading: false,
     isError: false,
   },
   extraReducers: (builder) => {
     // find friend
     builder.addCase(getFriendByPhoneNumber.pending, (state, action) => {
-      state.isLoader = true;
+      state.isLoading = true;
     });
     builder.addCase(getFriendByPhoneNumber.fulfilled, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       console.log("action.payload", action.payload);
       state.friendInfo = action.payload;
     });
     builder.addCase(getFriendByPhoneNumber.rejected, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.isError = true;
     });
 
     // add friend
     builder.addCase(addFriend.pending, (state, action) => {
-      state.isLoader = true;
+      state.isLoading = true;
     });
     builder.addCase(addFriend.fulfilled, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.friendReqs.push(action.payload);
     });
     builder.addCase(addFriend.rejected, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.isError = true;
     });
 
     // list request
     builder.addCase(getFriendReqs.pending, (state, action) => {
-      state.isLoader = true;
+      state.isLoading = true;
     });
     builder.addCase(getFriendReqs.fulfilled, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.friendReqs = action.payload;
     });
     builder.addCase(getFriendReqs.rejected, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.isError = true;
     });
 
 
     // accpet add friend
     builder.addCase(accpetAddFriend.pending, (state, action) => {
-      state.isLoader = true;
+      state.isLoading = true;
     });
     builder.addCase(accpetAddFriend.fulfilled, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
     });
     builder.addCase(accpetAddFriend.rejected, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.isError = true;
     });
 
     // get friends
 
     builder.addCase(getFriends.pending, (state, action) => {
-      state.isLoader = true;
+      state.isLoading = true;
     });
     builder.addCase(getFriends.fulfilled, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.friends = action.payload;
     });
     builder.addCase(getFriends.rejected, (state, action) => {
-      state.isLoader = false;
+      state.isLoading = false;
       state.isError = true;
     });
   },
