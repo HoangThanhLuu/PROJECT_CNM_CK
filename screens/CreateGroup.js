@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GroupInput from "../components/Group/GroupInput";
 import ConversationItem from "../components/ShareMessage/ConversationItem";
 import ListFriend from "../components/Group/ListFriend";
-import FriendOutput from "../components/Group/FriendOuput";
+// import FriendOutput from "../components/Group/FriendOuput";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 import { refeshAddMember } from "../redux/conversationSlice";
@@ -79,13 +79,13 @@ const CreateGroup = ({ navigation }) => {
                 friends={friends}
                 title={"Danh sách bạn bè"}
             />
-            {addMember.length >= 1 && (
+            {/* {addMember.length >= 1 && (
                 <FriendOutput
                     onPress={createGroupHandler}
                     style={styles.friendOutputContainer}
                     friendData={addMember}
                 />
-            )}
+            )} */}
         </View>
     );
 };
