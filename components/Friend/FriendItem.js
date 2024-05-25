@@ -19,24 +19,24 @@ const FriendItem = ({ avatar, name }) => {
 export default FriendItem;
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection:'row',
-    justifyContent:"space-between",
-    alignItems:"center",
-    padding:12
+  container: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 12
   },
-  infoContainer:{
-    flexDirection:"row",
-    alignItems:'center',
-    justifyContent:"space-around",
-    width:"65%"
-  } , 
-  buttonContainer:{
-    flexDirection:"row",
-    justifyContent:'center',
-    width:"35%",
-    justifyContent:"space-around",
-  }, 
+  infoContainer: {
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: "space-around",
+    width: "65%"
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: 'center',
+    width: "35%",
+    justifyContent: "space-around",
+  },
   image: {
     width: 50,
     height: 50,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
 
   },
-  name:{
-    fontSize:16,
+  name: {
+    fontSize: 16,
   }
 });

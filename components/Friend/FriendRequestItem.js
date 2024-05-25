@@ -5,15 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { accpetAddFriend } from "../../redux/FriendSlice";
 
-const FriendRequestItem = ({ id, name, avatar, content }) => {
+const FriendRequestItem = ({ _id, name, avatar, content }) => {
   const navigation = useNavigation();
   const friendSelector = useSelector((state) => state.friends);
   const dispatch = useDispatch();
   async function acceptAddFriendHandler() {
     try {
-      dispatch(accpetAddFriend(id));
-      if (friendSelector.isLoader === false && friendSelector.isError === false)
-        navigation.navigate("Home", {screen: "Tin nhắn"});
+      dispatch(accpetAddFriend(_id));
+      if (friendSelector.isLoading === false && friendSelector.isError === false)
+        navigation.navigate("Home", { screen: "Tin nhắn" });
     } catch (error) {
       console.log(error);
     }
