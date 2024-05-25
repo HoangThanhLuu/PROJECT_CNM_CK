@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFriendReqs, getFriends } from "../redux/FriendSlice";
 import { PORT } from "../utils/api/port";
 import { getFriendsAPI } from "../utils/api/FriendAPI";
-const FriendScreen = ({navigation}) => {
+const FriendScreen = ({ navigation }) => {
   const friendSelector = useSelector((state) => state.friends);
   console.log(friendSelector);
   const dispatch = useDispatch();
