@@ -15,7 +15,7 @@ import RegisterForm from "../components/Login/RegisterForm";
 import ShareScreen from "../screens/ShareScreen";
 import CreateGroup from "../screens/CreateGroup";
 import OptionScreen from "../screens/OptionScreen";
-
+import ForgetPassword from "../components/Login/ForgetPassword";
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
@@ -24,6 +24,8 @@ const StackNavigation = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="RegisterForm" component={RegisterForm} options={{ headerShown: false }} />
+        <Stack.Screen name="ForgetPassword" component={ForgetPassword} options={{ headerShown: false }} />
+
         <Stack.Screen name="RegisterOPT" component={RegisterOPT} />
         <Stack.Screen name="Home" component={BottomNavigation} options={{ headerShown: false }} />
         <Stack.Screen name="Chat" component={ChatScreen} />
