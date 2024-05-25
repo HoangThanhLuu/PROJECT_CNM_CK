@@ -2,7 +2,7 @@
 // Trong component ForgetPassword
 
 import React, { useState } from "react";
-import { View, TextInput, Button, Alert } from "react-native";
+import { View, TextInput, Button, Alert, Text } from "react-native";
 import axios from "axios";
 import { PORT } from "../../utils/api/port";
 
@@ -42,6 +42,7 @@ const ForgetPassword = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ fontSize: 20, fontWeight: '700', color: 'blue', marginBottom: 10 }}>ĐẶT LẠI MẬT KHẨU</Text>
             <TextInput
                 style={{ width: '80%', height: 50, borderWidth: 1, marginBottom: 20, paddingHorizontal: 10 }}
                 placeholder="Email"
