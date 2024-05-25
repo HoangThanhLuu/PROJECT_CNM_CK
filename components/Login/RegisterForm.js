@@ -326,36 +326,43 @@ const RegisterForm = ({ navigation }) => {
 
   const handleRegister = async () => {
     // Kiểm tra các trường thông tin có được nhập đầy đủ không
-    if (email === null || phone === null || password === null || name === null || confirmPassword === null) {
-      Alert.alert("Error", "Vui lòng nhập lại");
+    if (!email || !phone || !password || !name || !confirmPassword) {
+      Alert.alert("Error", "Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
     // Kiểm tra mật khẩu và mật khẩu xác nhận có trùng khớp không
     if (password !== confirmPassword) {
-      Alert.alert("Error", "mật khẩu chưa khớp");
+      Alert.alert("Error", "Mật khẩu và mật khẩu xác nhận không khớp");
       return;
     }
 
     try {
       // Gửi request đăng ký tài khoản lên server
-      const response = await axios.post(PORT, "/auth/signup", {
-        email: email,
-        phoneNumber: phone,
-        password: password,
-        name: name,
-        confirmPassword: confirmPassword
-      });
+      const response = await axios.post(
+        `${PORT}/auth/signup`,
+        {
+          email: email,
+          phoneNumber: phone,
+          password: password,
+          name: name,
+          confirmPassword: confirmPassword
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          timeout: 10000 // Thêm timeout nếu cần
+        }
+      );
 
       // Xử lý phản hồi từ server
-      console.log(response);
-      Alert.alert("Success", "OTP đã khớp với email.");
-      navigation.navigate('RegisterOTP', { email });
+      console.log(response.data);
+      Alert.alert("Success", "Đăng ký thành công.");
+      navigation.navigate('RegisterOPT', { email });
 
     } catch (error) {
       // Xử lý lỗi nếu có
       console.error("Error:", error);
-      Alert.alert("Error", "Đăng ký thất bại vui lòng nhập lại");
+      Alert.alert("Error", "Đăng ký thất bại, vui lòng thử lại");
     }
   };
 
